@@ -1,12 +1,23 @@
 #!/usr/bin/env python3
 '''Task 7's module.
+Module with a type annotated function
+that returns a tuple
 '''
-from typing import Union, Tuple
+
+from typing import Tuple, Union
+
+v_type = Union[int, float]
+return_type = Tuple[str, float]
 
 
-def to_kv(k: str, v: Union[int, float]) -> Tuple[str, float]:
-    '''Converts a key and its value to a tuple of the key and
-    the square of its value.
-    '''
-    return (k, float(v**2))
-
+def to_kv(k: str, v: v_type) -> return_type:
+    """
+    conver k, v to a tuple
+    Args:
+        k (str): any valid string value
+        v (int/float): An int or float value
+    """
+    if not isinstance(k, str):
+        raise TypeError('expected a string')
+    v_squared: float = v * v
+    return tuple([k, v_squared])
